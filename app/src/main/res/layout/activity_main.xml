@@ -4,40 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/map_background"
+    android:background="@drawable/map_background1"
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/arrow_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/circle_background"
+        app:layout_constraintBottom_toTopOf="@+id/arrow_left"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/arrow_up"
-        tools:layout_editor_absoluteY="466dp" />
+        app:srcCompat="@drawable/arrow_up" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/arrow_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/arrow_right"
-        tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="483dp" />
+        android:background="@drawable/circle_background"
+        app:layout_constraintBottom_toTopOf="@+id/arrow_down"
+        app:layout_constraintStart_toEndOf="@+id/arrow_up"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_up"
+        app:srcCompat="@drawable/arrow_right" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/arrow_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/arrow_left"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="310dp" />
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/circle_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/arrow_down"
+        app:srcCompat="@drawable/arrow_left" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/arrow_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/arrow_down"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="134dp" />
+        android:background="@drawable/circle_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.469"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/arrow_left"
+        app:srcCompat="@drawable/arrow_down" />
+
+    <view
+        android:id="@+id/game"
+        class="com.wen.map.GameView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/arrow_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.007"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
