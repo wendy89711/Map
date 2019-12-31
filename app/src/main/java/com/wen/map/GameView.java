@@ -11,10 +11,12 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 public class GameView extends View {
+    Crayon crayon;
     private float posX,posY = 300;
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
+
     protected void onDraw (Canvas canvas) {
         super .onDraw(canvas);
         Paint paint = new Paint();
