@@ -11,65 +11,51 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 public class GameView extends View {
-    Crayon crayon;
-    private float posX,posY = 300;
+    Noodles noodles;
+//    private float posX,posY = 300;
+    private Paint paint = new Paint();
+    Bitmap bitmapNoodles;
+
     public GameView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
     protected void onDraw (Canvas canvas) {
         super .onDraw(canvas);
-        Paint paint = new Paint();
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(),R.drawable.noodles);
-        canvas.drawBitmap(bitmap,posX,posY,paint);
+        if (noodles == null) {
+            noodles = new Noodles(this);
+        }
+
+        bitmapNoodles = BitmapFactory.decodeResource(getResources(),R.drawable.noodles);
+        canvas.drawBitmap(bitmapNoodles, noodles.getX(), noodles.getY(), paint);
     }
 
 
     public void moveRight() {
-        if (posX < getWidth()-250) {
-            posX = posX + 50;
+        if (noodles.getX() < getWidth()-250) {
+            noodles.setDirection(Noodles.DIERCTION_RIGHT);
             invalidate();
         }
     }
 
     public void moveLeft() {
-        if (posX > 50) {
-            posX -= 50;
+        if (noodles.getX() > 50) {
+            noodles.setDirection(Noodles.DIERCTION_LEFT);
             invalidate();
         }
     }
 
     public void moveUp() {
-        if (posY > 50) {
-            posY -= 50;
+        if (noodles.getY() > 50) {
+            noodles.setDirection(Noodles.DIERCTION_UP);
             invalidate();
         }
     }
 
     public void moveDown() {
-        if (posY < getHeight()-250) {
-            posY = posY + 50;
+        if (noodles.getY() < getHeight()-250) {
+            noodles.setDirection(Noodles.DIERCTION_UP);
             invalidate();
-        }
-    }
-
-    public float getPosX() {
-        return posX;
-    }
-
-    public void setPosX(float posX) {
-        if (posX > 0 && posX < getWidth()-200) {
-            this.posX = posX;
-        }
-    }
-
-    public float getPosY() {
-        return posY;
-    }
-
-    public void setPosY(float posY) {
-        if (posY > 0 && posY < getHeight()-200) {
-            this.posY = posY;
         }
     }
 }
