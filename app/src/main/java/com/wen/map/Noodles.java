@@ -3,10 +3,11 @@ package com.wen.map;
 public class Noodles extends Thread {
 
     public static final int DIERCTION_NONE = -1;
-    public static final int DIERCTION_RIGHT = 1;
-    public static final int DIERCTION_LEFT = 2;
-    public static final int DIERCTION_DOWN = 3;
-    public static final int DIERCTION_UP = 4;
+    public static final int DIERCTION_RIGHT = 0;
+    public static final int DIERCTION_LEFT = 1;
+    public static final int DIERCTION_DOWN = 2;
+    public static final int DIERCTION_UP = 3;
+    public static final int DIERCTION_NG = 9;
     private final GameView gameView;
     int x = 0;
     int y = 0;
@@ -15,12 +16,16 @@ public class Noodles extends Thread {
     public Noodles(GameView gameView) {
         this.gameView = gameView;
     }
+
+    @Override
     public void run() {
-        while (direction != DIERCTION_NONE) {
+        while (direction != DIERCTION_NONE && direction != DIERCTION_NG) {
             switch (direction) {
                 case DIERCTION_RIGHT:
-                    if (x < gameView.getWidth()-250) {
+                    if (x < gameView.getWidth()-230) {
                         x += 50;
+                    } else {
+                        direction = DIERCTION_NG;
                     }
                     gameView.invalidate();
                     try {
@@ -32,6 +37,8 @@ public class Noodles extends Thread {
                 case DIERCTION_LEFT:
                     if (x > 50) {
                         x -= 50;
+                    } else {
+                        direction = DIERCTION_NG;
                     }
                     gameView.invalidate();
                     try {
@@ -41,8 +48,10 @@ public class Noodles extends Thread {
                     }
                     break;
                 case DIERCTION_DOWN:
-                    if (y < gameView.getHeight()-250) {
+                    if (y < gameView.getHeight()-230) {
                         y += 50;
+                    } else {
+                        direction = DIERCTION_NG;
                     }
                     gameView.invalidate();
                     try {
@@ -54,6 +63,8 @@ public class Noodles extends Thread {
                 case DIERCTION_UP:
                     if (y > 50) {
                         y -= 50;
+                    } else {
+                        direction = DIERCTION_NG;
                     }
                     gameView.invalidate();
                     try {
